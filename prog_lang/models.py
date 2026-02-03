@@ -20,6 +20,7 @@ class ProgLang(models.Model):
     # URLField - поле для ввода ссылок, например https://www.example.com
     # EmailField - поле для ввода email адресов, например admin@example.com
     # TODO - изучить атрибут null=True
+    # null - это атрибут который позволяет сохранять пустые значения в базе данных
     # TODO - почитать документацию джанго
 
 

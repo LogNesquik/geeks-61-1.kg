@@ -1,0 +1,11 @@
+<h1>Список машин с тегами</h1>
+{% for i in nummer_car %}
+
+<p>{{ i.nameCar }}</p>
+
+    {% for j in i.tags.all %}
+    <p> #{{ j.name }}</p>
+
+    {% endfor %}
+
+{% endfor %}
