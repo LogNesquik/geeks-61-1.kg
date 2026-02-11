@@ -1,7 +1,17 @@
+<center>
+<button><a href="/create_prog_lang/">Добавить</a></button>
 {% for i in prog_lang %}
-
-<img src="{{ i.image.url }}" alt="" width="300" height="400">
 <h1>{{ i.title }}</h1>
-<p> <a href="/prog_lang/{{ i.id }}">Подробнее</a> </p>
-
+<img src="{{ i.image.url }}" alt="" width="300" height="400">
+<p><a href="/prog_lang/{{ i.id }}">Подробнее</a> </p>
+<p><a href="/prog_lang/{{ i.id }}/delete">Удалить</a> </p>
+<p><a href="/prog_lang/{{ i.id }}/edit">Редактировать</a> </p>
 {% endfor %}
+
+<form action="/login/", method="post">
+    {% csrf_token %}
+    <button type="submit">Выйти из аккаунта</button>
+
+</form>
+
+</center>
