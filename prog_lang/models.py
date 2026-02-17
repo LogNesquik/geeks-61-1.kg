@@ -15,6 +15,8 @@ class ProgLang(models.Model):
     # auto_now_add=True - при создании записи автоматически заполняет текущее время и дату
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время создания записи')
 
+    views = models.PositiveIntegerField(default=0, null=True)
+
     # TODO - изучать поля самостоятельно FileField, URLField, EmailField.
     # FileFied - поле для загрузки любых файлов, например .pdf, .docx и т.д.
     # URLField - поле для ввода ссылок, например https://www.example.com

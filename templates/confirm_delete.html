@@ -1,0 +1,6 @@
+<p>ВЫ действительно хотите удалить язык - {{ prog_lang_id.title }}</p>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <button type="submit">Да</button>
+</form>

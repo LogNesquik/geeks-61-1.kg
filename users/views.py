@@ -4,43 +4,21 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from users.forms import CustomUserForm
 from django.http import HttpResponse
+from django.views import generic
+from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse, reverse_lazy
 
-def register_view(request):
-    if request.method == 'POST':
-        form = CustomUserForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect("login")
-    else:
-        form = CustomUserForm()
-    
-    return render(
-        request,
-        'register.html',
-        {
-            "form": form
-        }
-    )
+class RegisterView(generic.CreateView):
+    template_name = 'register.html'
+    success_url = '/'
+    form_class = CustomUserForm
 
-def auth_login_view(request):
-    if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return HttpResponse('Успешно прошли авторизацию! <a href="{% url "yaziki_programmirovanie" %}">Список языков программирования</a> ')
-            # return redirect("/prog_lang/")
-    else:
-        form = AuthenticationForm()
+class AuthLoginView(LoginView):
+    template_name = 'login.html'
+    form_class = AuthenticationForm
 
-    return render(
-        request,
-        'login.html',
-        {
-            'form': form
-        }
-    )
+    def get_success_url(self):
+        return reverse('yaziki:yaziki_programmirovanie')
 
-def auth_loguot_view(request):
-    logout(request)
-    return redirect("/login/")
+class AuthLogout(LogoutView):
+    next_page = reverse_lazy('login')

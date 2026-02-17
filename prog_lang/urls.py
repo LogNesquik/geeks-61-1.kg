@@ -4,11 +4,11 @@ from . import views
 app_name = 'yaziki'
 
 urlpatterns = [
-    path('prog_lang/', views.prog_lang_list_view, name='yaziki_programmirovanie'),
-    path('prog_lang/<int:id>/', views.prog_lang_detail_view),
-    path('prog_lang/<int:id>/delete', views.delete_prog_lang_view),
-    path('prog_lang/<int:id>/edit', views.edit_prog_lang_view),
+    path('prog_lang/', views.ProgLangList.as_view(), name='yaziki_programmirovanie'),
+    path('prog_lang/<int:id>/', views.ProgLangDetail.as_view()),
+    path('prog_lang/<int:id>/delete', views.DeleteProgLangView.as_view()),
+    path('prog_lang/<int:id>/edit', views.UpdateProgLangView.as_view()),
 
-    path('create_prog_lang/', views.create_prog_lang_view, name='sozdat_blog'),
-    path('search/', views.search_view),
+    path('create_prog_lang/', views.CreateProgLang.as_view(), name='sozdat_blog'),
+    path('search/', views.Search_view.as_view()),
 ]
